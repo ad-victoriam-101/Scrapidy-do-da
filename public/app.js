@@ -12,6 +12,7 @@ function displayResults(WebScrapeData) {
     });
 }
 
-$.getJSON("/all", data =>{
-    displayResults(data);
+$.getJSON("/all", WebScrapeData =>{
+    console.log(WebScrapeData);
+    displayResults(WebScrapeData);
 });
