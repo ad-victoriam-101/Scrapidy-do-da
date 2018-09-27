@@ -7,3 +7,15 @@ body{
     background-image: url(leaves.png);
     background-repeat: repeat;
 }
+.cardDiv{
+    padding: 20px;
+    margin: 20px,10px;
+    background-color:lightgray;
+}
+
+.btn{
+    float:left;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

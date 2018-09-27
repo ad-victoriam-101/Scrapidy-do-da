@@ -1,19 +1,21 @@
-function displayResults(WebScrapeData) {
+function displayResults() {
     $("#mainContent").empty();
-    WebScrapeData.forEach(function (data) {
-        var card = $('<card>').append(
-            $("<card-title>").text(data.title),
-            $("<card-body").text(data.link),
-            $("<button>").text("Save This link").addClass("btn btn-primary"),
-            $(".btn").attr("id", "isSaved")
-        );
-        card.addClass("col-md-3");
-        $("#mainContent").append(card);
+    $.getJSON("/all", WebScrapeData => {
+        WebScrapeData.forEach(function (data) {
+            var card = $('<div>').addClass("card cardDiv").append(
+                $("<h3>").addClass("card-title").text(data.title),
+                $("<a>").attr("href",(data.link)).text("Link for Story"),
+                $("<button>").addClass("btn btn-info data-button").text("Save").attr(
+                "type","button")
+            );
+            card.addClass("col-md-4");
+            $("#mainContent").append(card);
+        });
     });
 }
-$(document).on('ready', function () {
-    $.getJSON("/all", WebScrapeData => {
-        console.log(WebScrapeData);
-        displayResults(WebScrapeData);
-    });
+
+displayResults();
+
+$(document).on('click',"#data-button", function () {
+    alert("clicked");
 })

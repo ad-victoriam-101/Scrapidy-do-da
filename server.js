@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 });
 // Retrieve scrapped data from the DB
-app.get("all", (req, res) =>{
+app.get("/all", (req, res) =>{
     db.WebScrapeData.find({}, function(error, found){
         if (error){
             console.log(error);
