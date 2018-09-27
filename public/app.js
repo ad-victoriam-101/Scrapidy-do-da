@@ -23,7 +23,7 @@ $(document).on('click', ".data-button", function () {
             dataType: "json",
             url: "/submit",
             data: {
-                title: $().val(),
+                title: $(".card-title").val(),
                 link: $("a").val(),
                 saved: true
             }
