@@ -23,6 +23,13 @@ app.use(
   })
 );
 app.use(express.static("public"));
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // database Config
 var dataBaseUrl = "WebScrape_db";
@@ -86,12 +93,12 @@ app.get("/scrape", function (req, res) {
   // Send a "Scrape Complete" message to the browser
   res.send("Scrape Complete");
 });
-app.post("/submit", (req,res)=>{
+app.post("/submit", (req, res) => {
   console.log(req.body);
-  db.savedArticles.insert(req.body, function(err,saved){
-    if(err){
+  db.savedArticles.insert(req.body, function (err, saved) {
+    if (err) {
       console.log(err);
-    } else{
+    } else {
       res.send(saved);
     }
   })
